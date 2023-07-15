@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <iostream>
 #include <cmath>
+#include <limits>
 using namespace std;
 
 class Solution {
@@ -15,7 +16,7 @@ public:
             int left = i + 1;
             int right = nums.size() - 1;
             // targetvalue = target - nums[i];
-            int pushvalue = 1000;
+            int pushvalue = numeric_limits<int>::max();
             while(left < right){
                 int tmp = nums[i] + nums[left] + nums[right];
                 if(tmp < target){
@@ -25,7 +26,7 @@ public:
                     right--;
                 }
                 else{
-                    return 0;
+                    return target;
                 }
                 if(abs(pushvalue) > abs(target - tmp)){
                     pushvalue = target - tmp;   
@@ -43,7 +44,7 @@ public:
                 value = v;
             }
         }
-        return value + target;
+        return target - value;
     }
     // int 
 };
